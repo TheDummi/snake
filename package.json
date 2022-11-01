@@ -1,0 +1,21 @@
+{
+	"name": "snake",
+	"version": "1.0.0",
+	"description": "A plain JavaScript snake game.",
+	"directories": {
+		"doc": "docs"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/TheDummi/Snake.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/TheDummi/Snake/issues"
+	},
+	"homepage": "https://github.com/TheDummi/Snake#readme"
+}

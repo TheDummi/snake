@@ -1,2 +1,3 @@
 # Snake
-A simple snake game to self host
+
+A plain JavaScript snake game.
