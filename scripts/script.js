@@ -9,7 +9,7 @@ const gameBoard = document.getElementById('game-board')
 function main(currentTime) {
     if (gameOver) {
         if (confirm('You lost, press ok to restart')) {
-            window.location = "/src/main.html"
+            window.location = "https://thedummi.github.io/snake/"
         }
         return;
     }
