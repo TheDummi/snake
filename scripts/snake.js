@@ -1,14 +1,15 @@
 import { getInputDirection } from "./input.js";
 const score = document.getElementById('score')
-export const snakeSpeed = 5;
 const snakeBody = [{ x: 26, y: 26 }];
 let newSegments = 0;
 
 export function update() {
-    addSegments()
-    const inputDirection = getInputDirection()
+    addSegments();
+
+    const inputDirection = getInputDirection();
+
     for (let i = snakeBody.length - 2; i >= 0; i--) {
-        snakeBody[i + 1] = { ...snakeBody[i] }
+        snakeBody[i + 1] = { ...snakeBody[i] };
     }
 
     snakeBody[0].x += inputDirection.x;
@@ -16,8 +17,11 @@ export function update() {
 }
 
 export function draw(gameBoard) {
-    snakeBody.forEach(segment => {
+    snakeBody.forEach((segment, i = 0) => {
         const snakeElement = document.createElement('div');
+
+        if (i === 0) snakeElement.setAttribute('id', "head");
+
         snakeElement.style.gridRowStart = segment.y;
         snakeElement.style.gridColumnStart = segment.x;
         snakeElement.classList.add('snake');
@@ -27,7 +31,7 @@ export function draw(gameBoard) {
 
 export function expandSnake(amount) {
     newSegments += amount
-    score.textContent = parseInt(score.textContent) + 1
+    score.textContent = `Score: ${parseInt(score.textContent.replace(/Score: /gi, "")) + 1}`
 }
 
 export function onSnake(position, { ignoreHead = false } = {}) {
