@@ -1,10 +1,11 @@
-import { update as updateSnake, draw as drawSnake, snakeSpeed, getSnakeHead, snakeIntersection } from "./snake.js";
-import { update as updateFood, draw as drawFood } from "./food.js"
-import { outsideGrid } from "./grid.js"
+import { update as updateSnake, draw as drawSnake, getSnakeHead, snakeIntersection } from "./snake.js";
+import { update as updateFood, draw as drawFood } from "./food.js";
+import { outsideGrid } from "./grid.js";
 
+export let speed = 5;
 let lastRenderTime = 0;
 let gameOver = false;
-const gameBoard = document.getElementById('game-board')
+const gameBoard = document.getElementById('game-board');
 
 function main(currentTime) {
     if (gameOver) {
@@ -13,22 +14,32 @@ function main(currentTime) {
         }
         return;
     }
-    window.requestAnimationFrame(main)
+    window.requestAnimationFrame(main);
+
     const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000;
-    if (secondsSinceLastRender < 1 / snakeSpeed) return;
+
+    if (secondsSinceLastRender < 1 / speed) return;
 
     lastRenderTime = currentTime;
+    const speeder = update();
 
-    update()
-    draw()
+    if (speeder) {
+        speed += speeder;
+
+        const spd = document.getElementById('speed');
+
+        spd.textContent = `Speed: ${Math.round(speed * 10) / 10}`;
+    }
+
+    draw();
 }
 
 window.requestAnimationFrame(main)
 
 function update() {
     updateSnake()
-    updateFood()
     checkForDeath()
+    return updateFood()
 }
 
 function draw() {
